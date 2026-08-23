@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrella Integrated — PR & Creative Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0C0C0E;
+    --bone:#F3EEE4;
+    --lacquer:#C11F3D;
+    --brass:#B8935A;
+    --slate:#6E6B66;
+    --line:#D8D2C4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bone);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--lacquer);color:var(--bone);}
+
+  /* Ticker */
+  .ticker-wrap{
+    background:var(--ink);
+    color:var(--bone);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:9px 0;
+    border-bottom:1px solid var(--ink);
+  }
+  .ticker{
+    display:inline-block;
+    padding-left:100%;
+    animation:ticker 28s linear infinite;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.08em;
+  }
+  .ticker span{margin-right:48px;}
+  .ticker .accent{color:var(--brass);}
+  @keyframes ticker{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-100%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker{animation:none;padding-left:24px;}
+  }
+
+  /* Nav */
+  nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6vw;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mark{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:19px;
+    letter-spacing:0.01em;
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .nav-links a{
+    color:var(--ink);
+    text-decoration:none;
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0;height:1px;
+    background:var(--lacquer);
+    transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  @media (max-width:640px){ .nav-links{display:none;} }
+
+  /* Hero */
+  .hero{
+    padding:9vw 6vw 6vw;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--lacquer);
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px;height:1px;
+    background:var(--lacquer);
+    display:inline-block;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-size:clamp(48px, 9vw, 122px);
+    line-height:0.94;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--lacquer);
+  }
+  .hero-sub{
+    margin-top:34px;
+    max-width:560px;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--slate);
+  }
+  .hero-meta{
+    margin-top:52px;
+    display:flex;
+    gap:56px;
+    flex-wrap:wrap;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .hero-meta div{max-width:200px;}
+  .hero-meta .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin-bottom:6px;
+  }
+  .hero-meta .v{font-size:14px;}
+
+  /* Section framing */
+  section{padding:0 6vw;}
+  .section-inner{
+    padding:80px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .label-row{
+    display:flex;
+    align-items:baseline;
+    gap:18px;
+    margin-bottom:40px;
+  }
+  .label-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--brass);
+  }
+  .label-title{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:26px;
+  }
+
+  /* About */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:70px;
+  }
+  .about-grid p{
+    font-size:20px;
+    line-height:1.65;
+    font-family:'Fraunces',serif;
+    font-weight:300;
+  }
+  .about-grid p + p{margin-top:22px;}
+  .pull{
+    align-self:start;
+    padding-left:26px;
+    border-left:2px solid var(--lacquer);
+  }
+  .pull-text{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:22px;
+    line-height:1.4;
+  }
+  .pull-cite{
+    margin-top:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--slate);
+    text-transform:uppercase;
+  }
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+
+  /* Services */
+  .service-row{
+    display:grid;
+    grid-template-columns:60px 1fr 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    align-items:baseline;
+  }
+  .service-row:last-child{border-bottom:none;}
+  .service-num{
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--brass);
+    font-size:12px;
+  }
+  .service-name{
+    font-family:'Fraunces',serif;
+    font-size:24px;
+    font-weight:400;
+  }
+  .service-desc{
+    color:var(--slate);
+    font-size:14.5px;
+    line-height:1.6;
+    max-width:420px;
+  }
+  @media (max-width:700px){
+    .service-row{grid-template-columns:1fr;gap:8px;}
+  }
+
+  /* Current work */
+  .work-card{
+    background:var(--ink);
+    color:var(--bone);
+    padding:56px 6vw;
+    margin:0 -6vw;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .work-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:18px;
+  }
+  .work-title{
+    font-family:'Fraunces',serif;
+    font-size:34px;
+    font-style:italic;
+    line-height:1.2;
+  }
+  .work-desc{
+    color:#c9c5bd;
+    font-size:15px;
+    line-height:1.7;
+    margin-top:18px;
+    max-width:440px;
+  }
+  .work-stats{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .work-stats div{
+    border-top:1px solid #333;
+    padding-top:14px;
+  }
+  .work-stats .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:#8a867e;
+  }
+  .work-stats .v{
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    margin-top:6px;
+  }
+  @media (max-width:800px){ .work-card{grid-template-columns:1fr;} }
+
+  /* Contact */
+  .contact{
+    padding:90px 0 70px;
+    text-align:left;
+  }
+  .contact h2{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:clamp(34px,5vw,58px);
+    max-width:640px;
+    line-height:1.15;
+  }
+  .contact-row{
+    margin-top:44px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  .contact-email{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:16px;
+    color:var(--lacquer);
+    text-decoration:none;
+    border-bottom:1px solid var(--lacquer);
+    padding-bottom:3px;
+  }
+  footer{
+    padding:26px 6vw 40px;
+    display:flex;
+    justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    color:var(--slate);
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="accent">NOW BOOKING</span><span>MEDIA STRATEGY · SOUTHERN CALIFORNIA</span><span class="accent">CURRENTLY IN MOTION</span><span>LIVE EVENT PRESS COVERAGE · LA / NY SENSIBILITY</span><span class="accent">EST. LOS ANGELES</span><span>PR — MARKETING — CREATIVE STRATEGY</span><span class="accent">NOW BOOKING</span><span>MEDIA STRATEGY · SOUTHERN CALIFORNIA</span><span class="accent">CURRENTLY IN MOTION</span><span>LIVE EVENT PRESS COVERAGE · LA / NY SENSIBILITY</span><span class="accent">EST. LOS ANGELES</span><span>PR — MARKETING — CREATIVE STRATEGY</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-mark">Estrella Integrated</div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Independent Publicist · Los Angeles</div>
+  <h1>PR that <em>moves</em><br>with the room.</h1>
+  <p class="hero-sub">Media strategy and creative marketing for artists, producers, and events that don't fit the traditional press mold — built on real relationships, not templates.</p>
+  <div class="hero-meta">
+    <div>
+      <div class="k">Background</div>
+      <div class="v">Integrated Marketing Communications + PR</div>
+    </div>
+    <div>
+      <div class="k">Focus</div>
+      <div class="v">Music, nightlife & creative event press</div>
+    </div>
+    <div>
+      <div class="k">Based</div>
+      <div class="v">Los Angeles, CA</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-inner">
+    <div class="label-row">
+      <div class="label-num">01</div>
+      <div class="label-title">The Bridge</div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Estrella Integrated sits between the people making the work and the people covering it — creatives, producers, and event brands on one side, press and media relationships on the other.</p>
+        <p>The approach blends formal PR training with a marketing communications background, reading not just who to pitch, but why a story lands, where it lands best, and when.</p>
+      </div>
+      <div class="pull">
+        <div class="pull-text">"Most PR is a Rolodex. This is a translation layer — between what's happening and who needs to hear about it."</div>
+        <div class="pull-cite">— Estrella Integrated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-inner">
+    <div class="label-row">
+      <div class="label-num">02</div>
+      <div class="label-title">Services</div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-num">01</div>
+      <div class="service-name">Media Relations</div>
+      <div class="service-desc">Press outreach, pitching, and relationship-building with outlets and writers who actually cover your world — not a mass blast list.</div>
+    </div>
+    <div class="service-row">
+      <div class="service-num">02</div>
+      <div class="service-name">Event Strategy</div>
+      <div class="service-desc">Positioning and press planning for live events — finding the angle before the story's even asked for.</div>
+    </div>
+    <div class="service-row">
+      <div class="service-num">03</div>
+      <div class="service-name">Creative Matchmaking</div>
+      <div class="service-desc">Connecting artists and producers directly to the right press contact, at the right moment — the piece that's usually missing.</div>
+    </div>
+    <div class="service-row">
+      <div class="service-num">04</div>
+      <div class="service-name">Brand & Marketing</div>
+      <div class="service-desc">Integrated marketing communications support for creatives who need the bigger-picture strategy, not just a press release.</div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-inner" style="border-bottom:none;">
+    <div class="label-row">
+      <div class="label-num">03</div>
+      <div class="label-title">Currently</div>
+    </div>
+    <div class="work-card">
+      <div>
+        <div class="work-tag">In Progress</div>
+        <div class="work-title">Media strategy for an upcoming Southern California event series.</div>
+        <div class="work-desc">Currently leading press positioning and media outreach for a growing SoCal event brand — building out coverage ahead of its next date.</div>
+      </div>
+      <div class="work-stats">
+        <div>
+          <div class="k">Status</div>
+          <div class="v">Active engagement</div>
+        </div>
+        <div>
+          <div class="k">Region</div>
+          <div class="v">Los Angeles</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact">
+    <h2>Let's build the story before everyone else finds it.</h2>
+    <div class="contact-row">
+      <a class="contact-email" href="mailto:hello@estrellaintegrated.com">hello@estrellaintegrated.com</a>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--slate);letter-spacing:0.06em;text-transform:uppercase;">Los Angeles, CA</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Estrella Integrated</div>
+  <div>PR / Marketing / Creative Strategy</div>
+</footer>
+
+</body>
+</html>

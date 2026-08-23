@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selected Coverage | Estrella G. Lewis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Bodoni+Moda:ital,wght@0,500;0,700;0,800;1,500&family=Fredoka:wght@600;700&family=Oswald:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Montserrat:wght@300;600;700&family=UnifrakturMaguntia&family=Archivo+Black&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0C0C0E;
+    --bone:#F3EEE4;
+    --lacquer:#C11F3D;
+    --brass:#B8935A;
+    --slate:#6E6B66;
+    --line:#D8D2C4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bone);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--lacquer);color:var(--bone);}
+
+  /* Ticker */
+  .ticker-wrap{
+    background:var(--ink);
+    color:var(--bone);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:9px 0;
+    border-bottom:1px solid var(--ink);
+  }
+  .ticker{
+    display:inline-block;
+    padding-left:100%;
+    animation:ticker 28s linear infinite;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.08em;
+  }
+  .ticker span{margin-right:48px;}
+  .ticker .accent{color:var(--brass);}
+  @keyframes ticker{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-100%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker{animation:none;padding-left:24px;}
+  }
+
+  /* Nav */
+  nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6vw;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mark{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:19px;
+    letter-spacing:0.01em;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .nav-links a{
+    color:var(--ink);
+    text-decoration:none;
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0;height:1px;
+    background:var(--lacquer);
+    transition:width .3s ease;
+  }
+  .nav-links a:hover::after, .nav-links a.active::after{width:100%;}
+  @media (max-width:640px){ .nav-links{display:none;} }
+
+  /* Hero */
+  .hero{
+    padding:7vw 6vw 4vw;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--lacquer);
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px;height:1px;
+    background:var(--lacquer);
+    display:inline-block;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-size:clamp(40px, 7vw, 84px);
+    line-height:1.02;
+    letter-spacing:-0.01em;
+  }
+  .hero-intro{
+    margin-top:28px;
+    max-width:600px;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink);
+  }
+  .hero-note{
+    margin-top:14px;
+    max-width:600px;
+    font-size:14px;
+    line-height:1.6;
+    color:var(--slate);
+  }
+
+  /* Filters */
+  .filters{
+    padding:36px 6vw 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 26px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:24px;
+  }
+  .filter-btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    background:none;
+    border:none;
+    color:var(--slate);
+    cursor:pointer;
+    padding:4px 0;
+    position:relative;
+  }
+  .filter-btn::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0;height:1px;
+    background:var(--lacquer);
+    transition:width .25s ease;
+  }
+  .filter-btn:hover{color:var(--ink);}
+  .filter-btn.active{color:var(--ink);}
+  .filter-btn.active::after{width:100%;}
+
+  /* Coverage grid */
+  .coverage-wrap{padding:0 6vw 100px;}
+
+  .brand-group{margin-top:8px;}
+  .brand-group-header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding:22px 0 14px;
+    border-top:1px solid var(--line);
+  }
+  .brand-group-header .name{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:20px;
+  }
+  .brand-group-header .count{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--slate);
+  }
+
+  .coverage-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-bottom:10px;
+  }
+  .coverage-card{
+    display:flex;
+    flex-direction:column;
+  }
+  .card-preview{
+    aspect-ratio:16/10;
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    background:repeating-linear-gradient(135deg, var(--bone), var(--bone) 10px, #ece5d6 10px, #ece5d6 11px);
+  }
+  .card-preview.has-logo{
+    background:#ffffff;
+  }
+  .wordmark{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
+  }
+  .wm-forbes, .wm-vogue{
+    font-family:'Bodoni Moda', serif;
+    font-weight:700;
+    font-size:30px;
+    letter-spacing:0.5px;
+    color:#fff;
+    background:#000;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .wm-vogue{
+    background:#fff;
+    color:#000;
+    letter-spacing:2px;
+  }
+  .wm-billboard{
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:26px;
+    text-transform:lowercase;
+    letter-spacing:-0.5px;
+    color:#fff;
+    background:#000;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .wm-fashionista{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:#1a1a1a;
+  }
+  .wm-wwd{
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size:32px;
+    letter-spacing:1px;
+    color:#111;
+  }
+  .wm-vancouver{
+    text-align:center;
+  }
+  .wm-vancouver .name{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:700;
+    font-size:22px;
+    color:#1a1a1a;
+  }
+  .wm-vancouver .sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:8px;
+    letter-spacing:3px;
+    color:#6E6B66;
+    margin-top:2px;
+  }
+  .wm-coveteur{
+    font-family:'Cormorant Garamond', serif;
+    font-size:24px;
+    letter-spacing:1px;
+    color:#1a1a1a;
+    display:flex;
+    align-items:center;
+  }
+  .wm-coveteur .slash{
+    font-style:italic;
+    font-size:30px;
+    margin:0 1px;
+    transform:skewX(-10deg);
+  }
+  .wm-elle{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:22px;
+    letter-spacing:8px;
+    color:#111;
+  }
+  .wm-refinery{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+  }
+  .wm-refinery .ring{
+    width:34px;
+    height:34px;
+    border:2px solid #2b2b2b;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Montserrat', sans-serif;
+    font-weight:700;
+    font-size:11px;
+    color:#2b2b2b;
+  }
+  .wm-refinery .name{
+    font-family:'Montserrat', sans-serif;
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:1px;
+    color:#2b2b2b;
+  }
+  .wm-newbeauty{
+    font-family:'Montserrat', sans-serif;
+    font-weight:300;
+    font-size:16px;
+    letter-spacing:4px;
+    color:#1a1a1a;
+  }
+  .wm-gma{
+    width:70%;
+    aspect-ratio:1;
+    border-radius:50%;
+    background:#F7C11B;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px;
+  }
+  .wm-gma span{
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:11px;
+    line-height:1.25;
+    color:#2323C4;
+    text-transform:uppercase;
+  }
+  .wm-latimes{
+    font-family:'UnifrakturMaguntia', serif;
+    font-size:20px;
+    color:#111;
+    text-align:center;
+    line-height:1.2;
+  }
+  .wm-thekit{
+    font-family:'Archivo Black', sans-serif;
+    font-size:24px;
+    letter-spacing:-0.5px;
+    color:#111;
+  }
+  .wm-stylerave{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:18px;
+    letter-spacing:3px;
+    color:#111;
+  }
+  .card-preview .outlet-mark{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:22px;
+    color:var(--ink);
+    text-align:center;
+    padding:0 16px;
+    background:var(--bone);
+    padding:6px 14px;
+    border:1px solid var(--line);
+  }
+  .card-preview .verify-badge{
+    position:absolute;
+    top:10px;
+    right:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:8.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--bone);
+    background:var(--lacquer);
+    padding:3px 7px;
+  }
+  .card-body{padding-top:14px;}
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--slate);
+  }
+  .card-top .outlet{color:var(--ink);}
+  .card-headline{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-size:19px;
+    line-height:1.3;
+    margin-top:12px;
+    text-decoration:none;
+    color:var(--ink);
+    display:block;
+  }
+  .card-meta{
+    margin-top:12px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+  .card-role{
+    margin-top:10px;
+    font-size:13px;
+    line-height:1.55;
+    color:var(--slate);
+  }
+  .card-link{
+    margin-top:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--lacquer);
+    text-decoration:none;
+  }
+  @media (max-width:900px){
+    .coverage-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:600px){
+    .coverage-grid{grid-template-columns:1fr;}
+  }
+
+  /* CTA */
+  .cta{
+    background:var(--ink);
+    color:var(--bone);
+    padding:70px 6vw;
+    text-align:left;
+  }
+  .cta h2{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(30px,4.5vw,48px);
+    max-width:560px;
+    line-height:1.2;
+  }
+  .cta p{
+    margin-top:16px;
+    color:#c9c5bd;
+    font-size:15px;
+    max-width:440px;
+    line-height:1.6;
+  }
+  .cta-btn{
+    display:inline-block;
+    margin-top:32px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--bone);
+    text-decoration:none;
+    border:1px solid var(--brass);
+    padding:14px 28px;
+    transition:background .25s ease, color .25s ease;
+  }
+  .cta-btn:hover{
+    background:var(--brass);
+    color:var(--ink);
+  }
+
+  footer{
+    padding:26px 6vw 40px;
+    display:flex;
+    justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    color:var(--slate);
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="accent">NOW BOOKING</span><span>MEDIA STRATEGY · SOUTHERN CALIFORNIA</span><span class="accent">CURRENTLY IN MOTION</span><span>LIVE EVENT PRESS COVERAGE · LA / NY SENSIBILITY</span><span class="accent">EST. LOS ANGELES</span><span>PR · MARKETING · CREATIVE STRATEGY</span><span class="accent">NOW BOOKING</span><span>MEDIA STRATEGY · SOUTHERN CALIFORNIA</span><span class="accent">CURRENTLY IN MOTION</span><span>LIVE EVENT PRESS COVERAGE · LA / NY SENSIBILITY</span><span class="accent">EST. LOS ANGELES</span><span>PR · MARKETING · CREATIVE STRATEGY</span>
+  </div>
+</div>
+
+<nav>
+  <a class="nav-mark" href="index.html">Estrella G. Lewis</a>
+  <div class="nav-links">
+    <a href="index.html#work">Work</a>
+    <a href="selected-coverage.html" class="active">Coverage</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Portfolio · Media Relations</div>
+  <h1>Selected Coverage</h1>
+  <p class="hero-intro">A curated selection of earned media, interviews, and thought-leadership placements across the brands, founders, and creatives Estrella has worked with.</p>
+  <p class="hero-note">Coverage shown reflects work led or supported across media strategy, story development, outreach, and spokesperson coordination.</p>
+</section>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-filter="All">All Coverage</button>
+  <button class="filter-btn" data-filter="Fashion + Accessories">Fashion + Accessories</button>
+  <button class="filter-btn" data-filter="Fine Jewelry">Fine Jewelry</button>
+  <button class="filter-btn" data-filter="Bridal">Bridal</button>
+  <button class="filter-btn" data-filter="Consumer + Lifestyle">Consumer + Lifestyle</button>
+</div>
+
+<div class="coverage-wrap">
+  <div id="coverage-grid">
+    <!-- Rendered by the script below, grouped by brand -->
+  </div>
+</div>
+
+<div class="cta">
+  <h2>Is your great idea missing the eyes it needs?</h2>
+  <p>A good idea doesn't sell itself. It needs the right person putting it in front of the right people, at the right moment.</p>
+  <a class="cta-btn" href="index.html#contact">Start a conversation</a>
+</div>
+
+<footer>
+  <div>© 2026 Estrella G. Lewis</div>
+  <div>PR / Marketing / Creative Strategy</div>
+</footer>
+
+<script>
+  /* ============================================================
+     COVERAGE DATA — edit entries directly in this array.
+     verified:true  = headline confirmed from the live page.
+     verified:false = headline reconstructed from the URL only;
+                      confirm against the real published title.
+     ============================================================ */
+  const coverageData = [
+    { outlet: "Coveteur", headline: "Most Coveted: Our May Fashion & Beauty Favorites", url: "https://coveteur.com/may-2026-most-coveted", date: "May 2026", year: "2026", format: "Product inclusion", category: "Fashion + Accessories", client: "Teddy Blake", role: "Teddy Blake (Handbags)", linkLabel: "Read coverage", featured: true, verified: true },
+    { outlet: "ELLE", headline: "The Carolyn Bessette Kennedy-Coded '90s-Inspired Bags We're Shopping After 'Love Story'", url: "https://www.elle.com/fashion/shopping/a70820776/carolyn-bessette-kennedy-90s-bags/", date: "2026", year: "2026", format: "Product inclusion", category: "Fashion + Accessories", client: "Teddy Blake", role: "Teddy Blake (Handbags)", linkLabel: "Read coverage", featured: true, verified: true },
+    { outlet: "The Kit", headline: "2027 Wedding Dress Trends", url: "https://thekit.ca/weddings/wedding-dresses/2027-wedding-dress-trends/", date: "2026", year: "2026", format: "Feature", category: "Bridal", client: "Rita Vineris", role: "Rita Vineris (Bridal)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "Vogue", headline: "Need to Know Now: The Vogue Jewelry Team's Favorite Jewelry Brands", url: "https://www.vogue.com/article/best-jewelry-brands", date: "June 2022", year: "2022", format: "Product inclusion", category: "Fine Jewelry", client: "Oak and Luna", role: "Oak and Luna (Jewelry)", linkLabel: "Read coverage", featured: true, verified: true },
+    { outlet: "Forbes", headline: "Here's Why The Tennis Necklace Earned Its Timeless Status", url: "https://www.forbes.com/sites/poojashah/2026/08/19/heres-why-the-tennis-necklace-earned-its-timeless-status/", date: "August 2026", year: "2026", format: "Expert commentary", category: "Fine Jewelry", client: "Oak and Luna", role: "Oak and Luna (Jewelry)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "Good Morning America", headline: "Get Ready for Mother's Day With Thoughtful Gift Ideas: Jewelry, Accessories, Keepsakes and More", url: "https://www.goodmorningamerica.com/shop/story/best-gifts-moms-126887435", date: "May 2026", year: "2026", format: "Product inclusion", category: "Fine Jewelry", client: "Oak and Luna", role: "Oak and Luna (Jewelry)", linkLabel: "Read coverage", featured: true, verified: true },
+    { outlet: "WWD", headline: "Oak and Luna and Stephanie Gottlieb Debut 'All Hours' Jewelry Collaboration", url: "https://wwd.com/pop-culture/new-fashion-releases/oak-and-luna-stephanie-gottlieb-all-hours-collaboration-1238079162/", date: "2025", year: "2025", format: "Feature", category: "Fine Jewelry", client: "Oak and Luna", role: "Oak and Luna (Jewelry)", linkLabel: "Read coverage", featured: true, verified: true },
+    { outlet: "Forbes", headline: "Sneakers Are A $161 Billion Business Worldwide, Experts Say Travel Trends Are Driving Demand", url: "https://www.forbes.com/sites/paulaconway/2026/07/06/sneakers-are-a-161-billion-business-worldwide-experts-say-travel-trends-are-driving-demand/", date: "July 2026", year: "2026", format: "Expert commentary", category: "Fashion + Accessories", client: "Valentina Rangoni", role: "Valentina Rangoni (Shoes)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "Vancouver Magazine", headline: "Small Independent Vancouver Brands To Shop Instead Of The Shein Pop-Up", url: "https://vanmag.com/style/fashion/small-independent-vancouver-brands-to-shop-instead-of-the-shein-pop-up/", date: "2026", year: "2026", format: "Product inclusion", category: "Fashion + Accessories", client: "Atelier Solana", role: "Atelier Solana (RTW)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "Style Rave", headline: "Best Necklaces For Mother's Day 2026", url: "https://www.stylerave.com/mothers-day-best-necklace-2026/", date: "2026", year: "2026", format: "Product inclusion", category: "Fine Jewelry", client: "Za Zewelz", role: "Za Zewelz (Fine Jewelry)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "Los Angeles Times", headline: "Oksana Mukha's Éclat 2026 Bridal Collection, Made In Ukraine", url: "https://www.latimes.com/weddings/styles/designers/story/2026-03-13/oksana-mukha-eclat-2026-bridal-collection-ukraine", date: "March 2026", year: "2026", format: "Feature", category: "Bridal", client: "Oksana Mukha", role: "Oksana Mukha (Bridal)", linkLabel: "Read coverage", featured: true, verified: false },
+    { outlet: "WWD", headline: "AOMI's Summer 2026 Collection", url: "https://wwd.com/pop-culture/new-fashion-releases/gallery/aomis-summer-2026-photos-1238937544/", date: "2026", year: "2026", format: "Feature", category: "Fashion + Accessories", client: "AOMI", role: "AOMI (RTW)", linkLabel: "Read coverage", featured: true, verified: false },
+    { outlet: "Coveteur", headline: "The Best Deals From The Nordstrom Anniversary Sale 2026", url: "https://coveteur.com/nordstrom-anniversary-sale-2026", date: "2026", year: "2026", format: "Product inclusion", category: "Fine Jewelry", client: "Dean Davidson", role: "Dean Davidson (Fine Jewelry)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "ELLE", headline: "The '90s Summer Jewelry Trends To Shop In 2026", url: "https://www.elle.com/fashion/trend-reports/a71509697/90s-summer-jewelry-trends-2026/", date: "2026", year: "2026", format: "Product inclusion", category: "Fine Jewelry", client: "Dean Davidson", role: "Dean Davidson (Fine Jewelry)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "Refinery29", headline: "The Best Gold And Silver Anklets To Shop Now", url: "https://www.refinery29.com/en-us/best-anklets-gold-silver", date: "2026", year: "2026", format: "Product inclusion", category: "Fine Jewelry", client: "Dean Davidson", role: "Dean Davidson (Fine Jewelry)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "Coveteur", headline: "The Anklet Jewelry Trend Is Back", url: "https://coveteur.com/anklet-jewelry-trend", date: "2026", year: "2026", format: "Feature", category: "Fine Jewelry", client: "Dean Davidson", role: "Dean Davidson (Fine Jewelry)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "NewBeauty", headline: "The K-Beauty Approach To Clean Period Care", url: "https://www.newbeauty.com/view/k-beauty-clean-period-care", date: "2026", year: "2026", format: "Feature", category: "Consumer + Lifestyle", client: "INERTIA", role: "INERTIA (Feminine Care Brand)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "Billboard", headline: "Alex and Ani's Twilight Jewelry Collection: Where To Buy", url: "https://www.billboard.com/culture/product-recommendations/twilight-alex-and-ani-jewelry-collection-buy-shop-online-1236299854/", date: "2026", year: "2026", format: "Product inclusion", category: "Fine Jewelry", client: "Alex + Ani", role: "Alex + Ani (Jewelry)", linkLabel: "Read coverage", featured: false, verified: false },
+    { outlet: "Fashionista", headline: "Alex and Ani's A Court of Thorns and Roses Jewelry Collection", url: "https://fashionista.com/2026/06/alex-and-ani-a-court-of-thorns-and-roses-jewelry-collection", date: "June 2026", year: "2026", format: "Product inclusion", category: "Fine Jewelry", client: "Alex + Ani", role: "Alex + Ani (Jewelry)", linkLabel: "Read coverage", featured: false, verified: false }
+  ];
+
+  function wordmarkHtml(outlet){
+    switch(outlet){
+      case "Forbes":
+        return `<div class="wm-forbes">Forbes</div>`;
+      case "Vogue":
+        return `<div class="wm-vogue">VOGUE</div>`;
+      case "Billboard":
+        return `<div class="wm-billboard">billboard</div>`;
+      case "Fashionista":
+        return `<div class="wm-fashionista">Fashionista</div>`;
+      case "WWD":
+        return `<div class="wm-wwd">WWD</div>`;
+      case "Vancouver Magazine":
+        return `<div class="wm-vancouver"><div class="name">Vancouver</div><div class="sub">MAGAZINE</div></div>`;
+      case "Coveteur":
+        return `<div class="wm-coveteur">CO<span class="slash">/</span>ETEUR</div>`;
+      case "ELLE":
+        return `<div class="wm-elle">ELLE</div>`;
+      case "Refinery29":
+        return `<div class="wm-refinery"><div class="ring">29</div><div class="name">REFINERY29</div></div>`;
+      case "NewBeauty":
+        return `<div class="wm-newbeauty">NEWBEAUTY</div>`;
+      case "Good Morning America":
+        return `<div class="wm-gma"><span>Good Morning America</span></div>`;
+      case "Los Angeles Times":
+        return `<div class="wm-latimes">Los Angeles Times</div>`;
+      case "The Kit":
+        return `<div class="wm-thekit">THE KIT</div>`;
+      case "Style Rave":
+        return `<div class="wm-stylerave">STYLE RAVE</div>`;
+      default:
+        return null;
+    }
+  }
+
+  const grid = document.getElementById('coverage-grid');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+
+  function escapeHtml(str){
+    const d = document.createElement('div');
+    d.textContent = str || '';
+    return d.innerHTML;
+  }
+
+  function initials(name){
+    return (name || '').split(' ').map(w => w[0]).join('').slice(0,3).toUpperCase();
+  }
+
+  function cardHtml(item){
+    const wordmark = wordmarkHtml(item.outlet);
+    return `
+      <div class="coverage-card">
+        <div class="card-preview${wordmark ? ' has-logo' : ''}">
+          ${item.verified === true ? '<div class="verify-badge">Live</div>' : ''}
+          ${wordmark ? `<div class="wordmark">${wordmark}</div>` : `<div class="outlet-mark">${escapeHtml(item.outlet)}</div>`}
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="outlet">${escapeHtml(item.outlet)}</span>
+            <span>${escapeHtml(item.year)}</span>
+          </div>
+          <a class="card-headline" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.headline)}</a>
+          <div class="card-meta">${escapeHtml(item.format)}${item.category ? ' · ' + escapeHtml(item.category) : ''}</div>
+          ${item.role ? `<div class="card-role">${escapeHtml(item.role)}</div>` : ''}
+          <a class="card-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.linkLabel || 'Read coverage')} ↗</a>
+        </div>
+      </div>`;
+  }
+
+  function render(filter){
+    const items = coverageData.filter(item => filter === 'All' || item.category === filter);
+
+    if(items.length === 0){
+      grid.innerHTML = '';
+      return;
+    }
+
+    // Group by client (brand), sorted alphabetically; each brand's own
+    // items sorted newest year first.
+    const groups = {};
+    items.forEach(item => {
+      const key = item.client || 'Other';
+      if(!groups[key]) groups[key] = [];
+      groups[key].push(item);
+    });
+
+    const brandNames = Object.keys(groups).sort((a,b) => a.localeCompare(b));
+
+    grid.innerHTML = brandNames.map(brand => {
+      const brandItems = groups[brand].slice().sort((a,b) => (b.year || '').localeCompare(a.year || ''));
+      return `
+        <div class="brand-group">
+          <div class="brand-group-header">
+            <div class="name">${escapeHtml(brand)}</div>
+            <div class="count">${brandItems.length} placement${brandItems.length > 1 ? 's' : ''}</div>
+          </div>
+          <div class="coverage-grid">
+            ${brandItems.map(cardHtml).join('')}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.filter);
+    });
+  });
+
+  render('All');
+</script>
+
+</body>
+</html>
